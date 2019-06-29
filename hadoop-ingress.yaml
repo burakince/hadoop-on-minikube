@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hadoop-ingress
+  namespace: hadoop
+spec:
+  rules:
+  - host: yarn.hadoop.local
+    http:
+      paths:
+        - backend:
+            serviceName: hadoop-hadoop-yarn-ui
+            servicePort: 8088
+  - host: namenode.hadoop.local
+    http:
+      paths:
+        - backend:
+            serviceName: hadoop-hadoop-hdfs-nn
+            servicePort: 50070
+  - host: datanode.hadoop.local
+    http:
+      paths:
+        - backend:
+            serviceName: hadoop-hadoop-hdfs-dn
+            servicePort: 50075
